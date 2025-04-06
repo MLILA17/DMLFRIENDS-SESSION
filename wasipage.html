@@ -12,101 +12,123 @@
       display: flex;
       justify-content: center;
       align-items: center;
-      background-color: black; /* Black bars on top and bottom */
-      color: black; /* Black text color */
-      font-weight: bold; /* Bold font */
+      background-color: #121212; /* Darker background */
+      color: white; /* White text color */
+      font-weight: bold;
+      overflow: hidden; /* Prevent scrollbars */
+      font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     }
 
     .content-wrapper {
       text-align: center;
       position: relative;
-      z-index: 1;
+      z-index: 2; /* Ensure buttons are above the background */
     }
 
     .background-image {
-      position: absolute;
-      top: 50%;
-      left: 50%;
+      position: fixed; /* Fixed positioning to cover the viewport */
+      top: 0;
+      left: 0;
       width: 100%;
-      height: auto;
-      transform: translate(-50%, -50%);
-      z-index: -1;
-      max-height: 100%;
-      max-width: 100%;
+      height: 100%;
+      object-fit: cover; /* Scale image to cover, may crop */
+      opacity: 0;
+      transition: opacity 1s ease-in-out;
+      z-index: 1; /* Place behind the content */
+    }
+
+    .background-image.active {
+      opacity: 1;
+    }
+
+    .btn-container {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
     }
 
     .btn {
-      --color: black; /* Text color inside button */
-      --color2: white; /* Hover text color */
-      width: 200px;
-      padding: 0.8em 1.75em;
-      background-color: orange;
-      border-radius: 6px;
-      border: .3px solid var(--color);
-      transition: .5s;
-      position: relative;
-      overflow: hidden;
-      cursor: pointer;
-      z-index: 1;
-      font-weight: bold; /* Bold text inside button */
-      font-size: 17px;
+      --primary-color: #007bff; /* Vibrant blue */
+      --secondary-color: #6610f2; /* Vibrant purple */
+      width: 220px;
+      padding: 1em 2em;
+      background: linear-gradient(to right, var(--primary-color), var(--secondary-color));
+      border: none;
+      border-radius: 8px;
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
       font-family: 'Roboto', 'Segoe UI', sans-serif;
       text-transform: uppercase;
-      color: var(--color);
-      margin-bottom: 24px;
-    }
-
-    .btn::after, .btn::before {
-      content: '';
-      display: block;
-      height: 100%;
-      width: 100%;
-      transform: skew(90deg) translate(-50%, -50%);
-      position: absolute;
-      inset: 50%;
-      left: 25%;
-      z-index: -1;
-      transition: .5s ease-out;
-      background-color: var(--color);
+      cursor: pointer;
+      margin-bottom: 16px;
+      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+      position: relative;
+      overflow: hidden;
+      transition: box-shadow 0.3s ease-in-out, transform 0.3s ease-in-out;
+      animation: bounce 0.6s infinite alternate; /* Bounce animation */
     }
 
     .btn::before {
-      top: -50%;
-      left: -25%;
-      transform: skew(90deg) rotate(180deg) translate(-50%, -50%);
-    }
-
-    .btn:hover::before {
-      transform: skew(45deg) rotate(180deg) translate(-50%, -50%);
-    }
-
-    .btn:hover::after {
-      transform: skew(45deg) translate(-50%, -50%);
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(255, 255, 255, 0.15); /* Subtle overlay */
     }
 
     .btn:hover {
-      color: var(--color2);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+      transform: translateY(-3px); /* Slight lift on hover */
     }
 
     .btn:active {
-      filter: brightness(.7);
-      transform: scale(.98);
+      transform: translateY(0);
+      box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+    }
+
+    @keyframes bounce {
+      0% {
+        transform: translateY(0);
+      }
+      100% {
+        transform: translateY(-5px);
+      }
     }
   </style>
 </head>
 <body>
 
+  <img src="https://files.catbox.moe/6qm1zj.jpg" alt="Background Image 1" class="background-image active" id="bgImage1">
+  <img src="https://i.imgur.com/your_second_image.jpg" alt="Background Image 2" class="background-image" id="bgImage2">
+  <img src="https://i.imgur.com/your_third_image.jpg" alt="Background Image 3" class="background-image" id="bgImage3">
+
   <div class="content-wrapper">
-    <img src="https://files.catbox.moe/6qm1zj.jpg" alt="Background Image" class="background-image">
-    <div>
+    <div class="btn-container">
       <button onclick="window.open(`/wasiqr`)" class="btn">𝙌𝙍 𝘾𝙊𝘿𝙀</button>
       <button onclick="window.open(`/pair`)" class="btn">𝙋𝘼𝙄𝙍 𝘾𝙊𝘿𝙀</button>
-      <button onclick="window.open(`https://github.com/9wish882/DAVINCS-MD`)" class="btn">🅳🅰🆅🅸🅽🅲🆂 𝙍𝙀𝙋𝙊</button>
-      <button onclick="window.open(`https://wa.me/255759637644?text=hellow sir`)" class="btn"> 🅲🅷🅴🅲🅺  𝔻𝕖𝕧𝕖𝕝𝕠𝕡𝕖𝕣 </button>
+      <button onclick="window.open(`https://github.com/9wish882/DAVINCS-MD`)" class="btn">DAVINCS- 𝙍𝙀𝙋𝙊</button>
+      <button onclick="window.open(`https://wa.me/255759637644?text=hellow sir`)" class="btn"> Contact 𝔻𝕖𝕧𝕖𝕝𝕠𝕡𝕖𝕣 </button>
       <button onclick="window.open(`https://whatsapp.com/channel/0029VakSTEQGZNCk6CqE9E2P`)" class="btn">𝐖𝐀 𝐂𝐇𝐀𝐍𝐍𝐄𝐋😎</button>
       <button onclick="window.open(`https://github.com/9Wish882`)" class="btn">𝐅𝐨𝐥𝐥𝐨𝐰 𝐦𝐞 𝐨𝐧 𝐠𝐢𝐭𝐡𝐮𝐛</button>
     </div>
   </div>
+
+  <script>
+    const images = document.querySelectorAll('.background-image');
+    let currentIndex = 0;
+
+    function cycleImages() {
+      images[currentIndex].classList.remove('active');
+      currentIndex = (currentIndex + 1) % images.length;
+      images[currentIndex].classList.add('active');
+    }
+
+    // Change image every 3 seconds (adjust as needed)
+    setInterval(cycleImages, 3000);
+  </script>
 
 </body>
 </html>
