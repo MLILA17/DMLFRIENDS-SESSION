@@ -68,7 +68,6 @@ router.get('/', async (req, res) => {
 
 📢 𝗢𝗙𝗙𝗜𝗖𝗜𝗔𝗟 𝗨𝗣𝗗𝗔𝗧𝗘𝗦
 ├─ ✨ New Features: v3.0++
-├─ 🔓 Beta Access: /betacode 
 ├─ 💎 Secret Menu: /dmlmenu
 └─ 🔗 https://whatsapp.com/channel/0029Vb2hoPpDZ4Lb3mSkVI3C
 
